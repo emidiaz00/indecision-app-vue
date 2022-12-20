@@ -1,23 +1,38 @@
 <template>
-  <h1>Counter</h1>
-  <p>  {{counter}} <sup>2</sup>  = {{ counter * counter}} </p>
-  <p>  {{counter}} <sup>2</sup>  = {{ getFinalValue() }} </p>
-  <p>  {{counter}} <sup>2</sup>  = {{ getSquareCounter }} </p>
+    
+    <div>
+        <h1>Counter</h1>
+        
+        <p>  {{counter}} <sup>2</sup>  = {{ getSquareCounter }} </p>
+        <button v-on:click="addCounter">+</button>
+        <button v-on:click="subtractCounter">-</button>
+        <button class="btn btn-danger" v-on:click="resetCounter">RESET</button>
+        
+    </div>
+    
+    
+    
+    
 </template>
 
 
 <script>
 export default {
-
     data() {
         return {
-           counter: 5 
+            counter: 1
         }
     },
     methods: {
-        getFinalValue() {
-            return this.counter * this.counter
-        } 
+        addCounter() {
+            this.counter++
+        },
+        subtractCounter() {
+            this.counter--
+        },
+        resetCounter() {
+            this.counter = 1
+        }
     },
     computed: {
         getSquareCounter() {
@@ -25,7 +40,6 @@ export default {
             return this.counter + this.counter
         }
     }
-
 }
 </script>
 
@@ -34,6 +48,21 @@ p {
     color: black;
     font-weight: bold;
     font-size: 40px;
+    margin: 0 auto;
 }
+button {
+    background-color: #497174;
+    border: none;
+    border-radius: 2px;
+    padding: 4px 38px;
+    margin: 10px;
+    color: #EFF5F5;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 6px;
+}
+
+
 
 </style>
