@@ -1,7 +1,6 @@
 <template>
-    
     <div>
-        <h1>Counter</h1>
+        <h1>{{ customTitle }}</h1>
         
         <p>  {{counter}} <sup>2</sup>  = {{ getSquareCounter }} </p>
         <button v-on:click="addCounter">+</button>
@@ -9,18 +8,21 @@
         <button class="btn btn-danger" v-on:click="resetCounter">RESET</button>
         
     </div>
-    
-    
-    
-    
 </template>
 
 
 <script>
 export default {
+    props: {
+        title: String,
+        start: {
+            type: Number,
+            default: 400
+        }
+    },
     data() {
         return {
-            counter: 1
+            counter: this.start
         }
     },
     methods: {
@@ -38,6 +40,11 @@ export default {
         getSquareCounter() {
             console.log('computed square counter');
             return this.counter + this.counter
+        },
+        customTitle() {
+            if (!this.title) {
+                return this.counter
+            }
         }
     }
 }
@@ -62,7 +69,4 @@ button {
     cursor: pointer;
     margin: 6px;
 }
-
-
-
 </style>

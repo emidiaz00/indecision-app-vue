@@ -1,6 +1,7 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <Counter msg="hola mundo"/>
+  
+  <Counter />
+  
 </template>
 
 <script>
