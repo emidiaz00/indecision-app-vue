@@ -1,6 +1,8 @@
 <template>
   
-  <IndecisionVue />
+
+<IndecisionVue />
+
   
 </template>
 
