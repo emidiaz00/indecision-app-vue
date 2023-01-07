@@ -1,16 +1,18 @@
 <template>
   
-  <Counter />
+  <IndecisionVue />
   
 </template>
 
 <script>
 import Counter from './components/Counter.vue'
+import IndecisionVue from './components/Indecision.vue';
 
 export default {
   name: 'App',
   components: {
-    Counter
+    // Counter,
+    IndecisionVue
   }
 }
 </script>
