@@ -17,8 +17,13 @@ export default {
         title: String,
         start: {
             type: Number,
-            default: 400
+            default: 100,
+            // required true
+            validator (value) {
+            return value > 103
         }
+        },
+        
     },
     data() {
         return {
@@ -38,7 +43,6 @@ export default {
     },
     computed: {
         getSquareCounter() {
-            console.log('computed square counter');
             return this.counter + this.counter
         },
         customTitle() {
