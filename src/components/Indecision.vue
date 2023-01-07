@@ -1,5 +1,5 @@
 <template>
-  <img src="https://via.placeholder.com/250" alt="bg">
+  <img v-if="img" :src="img" alt="bg">
   <div class="bg-dark"></div>
 
   <div class="indecision-container">
@@ -9,26 +9,46 @@
     placeholder="Hazme una pregunta" 
     name="" id="">
     <p>Recuerda terminar con signo de interrogación (?)</p>
-
-    <div>
-        <h2>{{ question }}</h2>
-        <h1>Si, No, ...pensando</h1>
+    <div class="bg-gray">
+        <div>
+            <h2>{{ question }}</h2>
+            <h1>{{ answer }}</h1>
+            <button v-show="showButtonClear" @click="resetAnswer" class="btn-clear">Clear</button>
+        </div>
     </div>
-
-  </div>
+</div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            question: null
+            question: null,
+            answer: null,
+            img: null,
+            showButtonClear: false
         }
-        
+    },
+    methods: {
+        async getAnswer() {
+            this.answer = "Pensando..."
+            const { answer, image } = await fetch('https://yesno.wtf/api').then(response => response.json())
+            this.answer = answer
+            this.img = image
+            this.showButtonClear = true
+        },
+        resetAnswer() {
+            this.question = '',
+            this.answer = '',
+            this.img = null
+            this.showButtonClear = false
+        }
     },
     watch: {
-        question(value, oldValue) {
-            if(!console.log(value.includes('?'))) return 
+        question(value) {
+            if(!value.includes('?'))
+            return 
+            this.getAnswer()
         }
     },
 }
@@ -44,7 +64,13 @@ export default {
         top: 0px;
         width: 100vw;
     }
-
+    .bg-gray {
+        background-color: #439A97;
+        width: 20%;
+        opacity: 90%;
+        margin: 0 auto;
+        border-radius: 4px;
+    }
     .bg-dark {
         background-color: rgba(0, 0, 0, 0.4);
     }
@@ -66,16 +92,28 @@ export default {
 
     p {
         color: white;
-        font-size: 20px;
-        margin-top: 0px;
+        font-size: 18px;
+        margin-top: 12px;
     }
 
-    h1, h2 {
+    h1 {
         color: white;
+        font-size: 22px;
+        text-transform: uppercase;
+       
     }
     
     h2 {
-        margin-top: 150px;
+        color: white;
+        margin-top: 140px;
+        font-size: 26px;
+        padding-top: 12px;
+    }
+    .btn-clear {
+        background: transparent;
+        border: 2px solid #BFEAF5;
+        border-radius: 4px;
+        padding-bottom: 4px;
     }
 
 
