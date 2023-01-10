@@ -1,12 +1,10 @@
 <template>
     <div>
         <h1>{{ customTitle }}</h1>
-        
-        <p>  {{counter}} <sup>2</sup>  = {{ getSquareCounter }} </p>
+        <p>{{counter}}<sup>2</sup> = {{ getSquareCounter }} </p>
         <button v-on:click="addCounter">+</button>
         <button v-on:click="subtractCounter">-</button>
         <button class="btn btn-danger" v-on:click="resetCounter">RESET</button>
-        
     </div>
 </template>
 
@@ -20,10 +18,9 @@ export default {
             default: 100,
             // required true
             validator (value) {
-            return value > 103
-        }
+                return value > 90
+            }
         },
-        
     },
     data() {
         return {

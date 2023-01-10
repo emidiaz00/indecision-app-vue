@@ -34,7 +34,7 @@ export default {
         async getAnswer() {
             this.answer = "Pensando..."
             const { answer, image } = await fetch('https://yesno.wtf/api').then(response => response.json())
-            this.answer = answer
+            this.answer = answer == 'yes' ? 'Si!' : 'No'
             this.img = image
             this.showButtonClear = true
         },
