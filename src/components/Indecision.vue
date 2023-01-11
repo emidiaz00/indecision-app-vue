@@ -10,7 +10,7 @@
     name="" id="">
     <p>Recuerda terminar con signo de interrogación (?)</p>
     <div class="bg-gray">
-        <div>
+        <div v-if="isValidQuestion">
             <h2>{{ question }}</h2>
             <h1>{{ answer }}</h1>
             <button v-show="showButtonClear" @click="resetAnswer" class="btn-clear">Clear</button>
@@ -26,14 +26,15 @@ export default {
             question: null,
             answer: null,
             img: null,
-            showButtonClear: false
+            showButtonClear: false,
+            isValidQuestion: false
         }
     },
     methods: {
         async getAnswer() {
             this.answer = "Pensando..."
             const { answer, image } = await fetch('https://yesno.wtf/api').then(response => response.json())
-            this.answer = answer
+            this.answer = answer == 'yes' ? 'Si!' : 'No'
             this.img = image
             this.showButtonClear = true
         },
@@ -46,8 +47,10 @@ export default {
     },
     watch: {
         question(value) {
+            this.isValidQuestion = false
             if(!value.includes('?'))
             return 
+            this.isValidQuestion = true
             this.getAnswer()
         }
     },
