@@ -2,6 +2,7 @@
     <div>
         <h1>{{ customTitle }}</h1>
         <p>{{counter}}<sup>2</sup> = {{ getSquareCounter }} </p>
+        <p data-testid="counter">{{ counter }}</p>
         <button v-on:click="addCounter">+</button>
         <button v-on:click="subtractCounter">-</button>
         <button class="btn btn-danger" v-on:click="resetCounter">RESET</button>
